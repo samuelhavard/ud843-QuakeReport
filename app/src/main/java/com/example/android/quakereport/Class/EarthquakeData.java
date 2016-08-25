@@ -8,10 +8,10 @@ import java.util.Date;
 public class EarthquakeData {
 
     private String mLocation;
-    private String mDate;
-    private double mMag;
+    private long mDate;
+    private float mMag;
 
-    public EarthquakeData(String mLocation, String mDate, double mMag) {
+    public EarthquakeData(String mLocation, long mDate, float mMag) {
         this.mLocation = mLocation;
         this.mDate = mDate;
         this.mMag = mMag;
@@ -21,11 +21,11 @@ public class EarthquakeData {
         return mLocation;
     }
 
-    public String getDate() {
+    public long getDate() {
         return mDate;
     }
 
-    public double getMag() {
+    public float getMag() {
         return mMag;
     }
 }

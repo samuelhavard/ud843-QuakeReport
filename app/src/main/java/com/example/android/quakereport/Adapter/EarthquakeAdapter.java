@@ -38,7 +38,8 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
         locationTextView.setText(currentData.getLocation());
 
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
-        dateTextView.setText(currentData.getDate());
+        String date = currentData.getDate() + "";
+        dateTextView.setText(date);
 
         return listItemView;
 
