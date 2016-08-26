@@ -18,6 +18,8 @@ import java.util.Date;
  * Created by samue_000 on 8/22/2016.
  */
 public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
+    private final String DATE = "date";
+    private final String TIME = "time";
 
     public EarthquakeAdapter(Context context, ArrayList<EarthquakeData> earthquakeData) {
         super(context, 0, earthquakeData);
@@ -34,18 +36,18 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
         EarthquakeData currentData = getItem(position);
 
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
-        magnitudeTextView.setText(currentData.getMag() + "");
+        magnitudeTextView.setText(currentData.getMag());
 
         TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
         locationTextView.setText(currentData.getLocation());
 
         Date earthquakeDate = new Date(currentData.getDate());
 
-        String dateFormat = formatDate(earthquakeDate);
+        String dateFormat = formattedDateTime(earthquakeDate, DATE);
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date_text_view);
         dateTextView.setText(dateFormat);
 
-        String formattedTime = formatTime(earthquakeDate);
+        String formattedTime = formattedDateTime(earthquakeDate, TIME);
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time_text_view);
         timeTextView.setText(formattedTime);
 
@@ -53,13 +55,20 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
 
     }
 
-    private String formatTime(Date dateObject) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-        return  timeFormat.format(dateObject);
-    }
+    private String formattedDateTime (Date dateObject, String selection) {
+        String timeFormatString = "h:mm a";
+        String dateFormatString = "LLL dd, yyyy";
 
-    private String formatDate (Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyy");
-        return dateFormat.format(dateObject);
+        switch (selection) {
+            case TIME:
+                SimpleDateFormat timeFormat = new SimpleDateFormat(timeFormatString);
+                return timeFormat.format(dateObject);
+            case DATE:
+                SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
+                return dateFormat.format(dateObject);
+            default:
+                return "Error";
+        }
+
     }
 }

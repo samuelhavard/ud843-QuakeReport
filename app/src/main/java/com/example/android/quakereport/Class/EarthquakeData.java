@@ -1,7 +1,5 @@
 package com.example.android.quakereport.Class;
 
-import java.util.Date;
-
 /**
  * Created by samue_000 on 8/22/2016.
  */
@@ -25,7 +23,7 @@ public class EarthquakeData {
         return mDate;
     }
 
-    public float getMag() {
-        return mMag;
+    public String getMag() {
+        return Float.toString(mMag);
     }
 }
