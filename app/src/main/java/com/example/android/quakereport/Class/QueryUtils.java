@@ -58,10 +58,10 @@ public final class QueryUtils {
 
                 float mag = Float.parseFloat(propertiesObject.optString("mag"));
                 String place = propertiesObject.optString("place");
-                //long date = Long.parseLong(propertiesObject.optString("time").toString());
                 long date = propertiesObject.getLong("time");
-               //int date = 123457890;
-                earthquakes.add(new EarthquakeData(place, date , mag));
+                String url = propertiesObject.getString("url");
+
+                earthquakes.add(new EarthquakeData(place, date , mag, url));
             }
 
 

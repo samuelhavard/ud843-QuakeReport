@@ -1,11 +1,13 @@
 package com.example.android.quakereport.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -120,6 +122,13 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
         return formatter.format(mag);
     }
 
+    /**
+     * getMagColor is a helper method used to determine the background color for the magnitude
+     * circle.
+     * @param mag is a float that represents the magnitude of the earthquake as supplied in the
+     *            JSON reply
+     * @return the {@link ContextCompat} color to be displayed in the magnitude circle.
+     */
     private int getMagColor (float mag) {
         int check = (int) Math.floor(mag);
         int magColor;

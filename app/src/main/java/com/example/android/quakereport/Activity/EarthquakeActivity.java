@@ -15,8 +15,12 @@
  */
 package com.example.android.quakereport.Activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.quakereport.Adapter.EarthquakeAdapter;
@@ -35,7 +39,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        ArrayList<EarthquakeData> earthquakes = QueryUtils.extractEarthquakes();
+        final ArrayList<EarthquakeData> earthquakes = QueryUtils.extractEarthquakes();
 
         // Create a new {@link ArrayAdapter} of earthquakes
         EarthquakeAdapter adapter = new EarthquakeAdapter(this, earthquakes);
@@ -46,5 +50,24 @@ public class EarthquakeActivity extends AppCompatActivity {
         // Set the adapter on the {@link ListView}
         // so the list can be populated in the user interface
         earthquakeListView.setAdapter(adapter);
+
+        // Set the onItemClickListener and navigates the user to the USGS web page
+        // that contains information about the selected earthquake.
+        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Initialize the intent and earthquake object needed to navigate to the
+                // correct URL for the clicked earthquake.
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                EarthquakeData earthquakeObject = earthquakes.get(position);
+
+                // Get the URI from the earthquake object for the clicked item and set the
+                //data to the intent that will navigate to the USGS site in a browswer.
+                Uri uri = Uri.parse(earthquakeObject.getURL());
+                intent.setData(uri);
+
+                startActivity(intent);
+            }
+        });
     }
 }
