@@ -8,11 +8,13 @@ public class EarthquakeData {
     private String mLocation;
     private long mDate;
     private float mMag;
+    private String mURL;
 
-    public EarthquakeData(String mLocation, long mDate, float mMag) {
-        this.mLocation = mLocation;
-        this.mDate = mDate;
-        this.mMag = mMag;
+    public EarthquakeData(String Location, long Date, float Mag, String URL) {
+        this.mLocation = Location;
+        this.mDate = Date;
+        this.mMag = Mag;
+        this.mURL = URL;
     }
 
     public String getLocation() {
@@ -25,5 +27,9 @@ public class EarthquakeData {
 
     public float getMag() {
         return mMag;
+    }
+
+    public String getURL() {
+        return mURL;
     }
 }
