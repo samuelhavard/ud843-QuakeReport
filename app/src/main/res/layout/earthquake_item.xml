@@ -6,32 +6,55 @@
 
     <TextView
         android:id="@+id/magnitude_text_view"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:layout_weight="1" />
+        android:gravity="center"
+        android:layout_marginLeft="16dp"/>
 
-    <TextView
-        android:id="@+id/location_text_view"
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:layout_weight="1" />
-
-    <TextView
-        android:id="@+id/date_text_view"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="left" />
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/time_text_view"
+        <TextView
+            android:id="@+id/location_offset_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/primary_location_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="left" />
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/time_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="start" />
+
+    </LinearLayout>
 
 </LinearLayout>

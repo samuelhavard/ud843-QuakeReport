@@ -1,7 +1,5 @@
 package com.example.android.quakereport.Class;
 
-import java.util.ArrayList;
-
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -58,7 +56,7 @@ public final class QueryUtils {
                 JSONObject arrayObject = earthQuakeArray.getJSONObject(i);
                 JSONObject propertiesObject = arrayObject.getJSONObject("properties");
 
-                float mag = Float.parseFloat(propertiesObject.optString("mag").toString());
+                float mag = Float.parseFloat(propertiesObject.optString("mag"));
                 String place = propertiesObject.optString("place");
                 //long date = Long.parseLong(propertiesObject.optString("time").toString());
                 long date = propertiesObject.getLong("time");

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.android.quakereport.Class.EarthquakeData;
 import com.example.android.quakereport.R;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,8 +19,8 @@ import java.util.Date;
  * Created by samue_000 on 8/22/2016.
  */
 public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
-    private final String DATE = "date";
-    private final String TIME = "time";
+    private static final String DATE = "date";
+    private static final String TIME = "time";
 
     public EarthquakeAdapter(Context context, ArrayList<EarthquakeData> earthquakeData) {
         super(context, 0, earthquakeData);
@@ -28,6 +29,8 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        String[] location = new String[2];
+
         View listItemView = convertView;
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.earthquake_item, parent, false);
@@ -35,11 +38,23 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
 
         EarthquakeData currentData = getItem(position);
 
+        //
         TextView magnitudeTextView = (TextView) listItemView.findViewById(R.id.magnitude_text_view);
-        magnitudeTextView.setText(currentData.getMag());
+        magnitudeTextView.setText(formattedMag(currentData.getMag()));
 
-        TextView locationTextView = (TextView) listItemView.findViewById(R.id.location_text_view);
-        locationTextView.setText(currentData.getLocation());
+        //
+        if (currentData.getLocation().contains(",")) {
+            location = currentData.getLocation().split(",");
+        } else {
+            location[0] = currentData.getLocation();
+            location[1] = "Near the ";
+        }
+
+        TextView primaryLocationTextView = (TextView) listItemView.findViewById(R.id.primary_location_text_view);
+        primaryLocationTextView.setText(location[0]);
+
+        TextView offsetLocationTextView = (TextView) listItemView.findViewById(R.id.location_offset_text_view);
+        offsetLocationTextView.setText(location[1]);
 
         Date earthquakeDate = new Date(currentData.getDate());
 
@@ -69,6 +84,10 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
             default:
                 return "Error";
         }
+    }
 
+    private String formattedMag (float mag) {
+        DecimalFormat formatter = new DecimalFormat("0.0");
+        return formatter.format(mag);
     }
 }

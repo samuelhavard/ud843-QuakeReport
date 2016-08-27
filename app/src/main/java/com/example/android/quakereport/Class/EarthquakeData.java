@@ -23,7 +23,7 @@ public class EarthquakeData {
         return mDate;
     }
 
-    public String getMag() {
-        return Float.toString(mMag);
+    public float getMag() {
+        return mMag;
     }
 }
