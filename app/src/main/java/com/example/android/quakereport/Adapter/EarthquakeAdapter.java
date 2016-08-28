@@ -1,13 +1,11 @@
 package com.example.android.quakereport.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -20,7 +18,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by samue_000 on 8/22/2016.
+ * Earthquake adapter is used to display information about earthquakes around the world to
+ * the user.  This information contains the magnitude, location, time, and date of each
+ * earthquake.
  */
 public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
     private static final String DATE = "date";
@@ -62,17 +62,18 @@ public class EarthquakeAdapter extends ArrayAdapter<EarthquakeData> {
 
         Date earthquakeDate = new Date(currentData.getDate());
 
-        //
+        //creates and sets a formatted version of date to be displayed to the user.
         String dateFormat = formattedDateTime(earthquakeDate, DATE);
         TextView dateTextView = (TextView) listItemView.findViewById(R.id.date);
         dateTextView.setText(dateFormat);
 
-        //
+        //creates and sets a formatted version of time to be displayed to the user
         String formattedTime = formattedDateTime(earthquakeDate, TIME);
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time);
         timeTextView.setText(formattedTime);
 
-        //
+        //creates a magnitude circle to be displayed with a text of the magnitude
+        //the color of this circle will adjust for a given magnitude
         GradientDrawable magCircle = (GradientDrawable) magnitudeTextView.getBackground();
         int magColor = getMagColor(currentData.getMag());
         magCircle.setColor(magColor);

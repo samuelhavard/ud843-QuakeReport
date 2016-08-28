@@ -1,7 +1,7 @@
 package com.example.android.quakereport.Class;
 
 /**
- * Created by samue_000 on 8/22/2016.
+ * EarthquakeData class is used to store information about individual earthquakes.
  */
 public class EarthquakeData {
 
