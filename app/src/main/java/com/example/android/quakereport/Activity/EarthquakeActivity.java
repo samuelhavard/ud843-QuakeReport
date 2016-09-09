@@ -15,11 +15,15 @@
  */
 package com.example.android.quakereport.Activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.quakereport.Adapter.EarthquakeAdapter;
@@ -55,6 +59,16 @@ public class EarthquakeActivity extends AppCompatActivity {
         ListView earthquakeListView = (ListView) findViewById(R.id.list);
         mAdapter = new EarthquakeAdapter(this, new ArrayList<EarthquakeData>());
         earthquakeListView.setAdapter(mAdapter);
+
+        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                EarthquakeData currentEarthquake = mAdapter.getItem(position);
+                Uri earthquakeUri = Uri.parse(currentEarthquake.getURL());
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+                startActivity(websiteIntent);
+            }
+        });
 
         EarthquakeAsyncTask earthquakeAsyncTask = new EarthquakeAsyncTask();
         earthquakeAsyncTask.execute(USGS_URL);
