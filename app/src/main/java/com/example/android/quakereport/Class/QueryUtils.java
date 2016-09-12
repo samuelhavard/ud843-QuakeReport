@@ -44,6 +44,12 @@ public final class QueryUtils {
         return extractFeatureFromJson(jsonResponse);
     }
 
+    /**
+     * makeURL is a helper class to convert a string into a URL
+     *
+     * @param urlString is a URL as a string passed from the {@link EarthquakeLoader}
+     * @return a {@link URL} to be used in the http request.
+     */
     private static URL makeURL(String urlString) {
         URL url = null;
         try {
