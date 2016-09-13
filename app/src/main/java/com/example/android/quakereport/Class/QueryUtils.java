@@ -95,6 +95,13 @@ public final class QueryUtils {
         return jsonResponse;
     }// end makeHttpRequest
 
+    /**
+     *
+     * @param inputStream is the input stream from the {@link HttpURLConnection} in the makeHttpRequest
+     *                    helper class.
+     * @return a {@link String} from the {@link InputStream} to be parsed
+     * @throws IOException
+     */
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
