@@ -36,6 +36,7 @@ public final class QueryUtils {
      */
     public static List<EarthquakeData> extractEarthquakes(String url) {
         String jsonResponse = null;
+
         try {
             jsonResponse = makeHttpRequest(makeURL(url));
         } catch (IOException e) {
